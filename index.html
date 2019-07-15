@@ -1,15 +1,19 @@
 <!doctype html>
 <html lang="en">
+
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<title>To Do List </title>
-	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+		integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
+		integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 </head>
+
 <body>
 	<div id="app">
-		
+
 		<div class="container">
 			<h2 class="text-center">{{message}}</h2>
 			<div class="row mt-5">
@@ -17,7 +21,8 @@
 					<form>
 						<div class="form-group">
 							<label for="todolist">Todolist</label>
-							<input type="text" class="form-control" ref="textbox" v-model="newtodolist" placeholder="輸入..." :value="input">
+							<input type="text" class="form-control" ref="textbox" v-model="newtodolist"
+								placeholder="輸入..." :value="input">
 						</div>
 						<button type="button" class="btn btn-primary" v-on:click="addTodo">添加項目</button>
 					</form>
@@ -26,42 +31,47 @@
 					<ul class="list-group">
 						<li class="list-group-item disabled" v-for="(todolist,index) in todolists" :key="index">
 							{{todolist.text}}
-							<button class="btn btn-danger btn-sm float-right" v-on:click="removeTodo(index)"> <span class="fa fa-remove"></span></button>
+							<button class="btn btn-danger btn-sm float-right" @click="removeTodo(index)"> <span
+									class="fa fa-remove"></span></button>
 						</li>
 					</ul>
 				</div>
 			</div>
 		</div>
+
 	</div>
-</div>
-<script src="https://cdn.jsdelivr.net/npm/vue"></script>
-<script>
-var app = new Vue({
-	el: '#app',
-	data: {
-		message : "Todolist",
-		todolists :[
-		{text : "內容 1"},
-		{text : "內容 2"},
-		{text : "內容 3"},
-		],
-		newtodolist : "",
-		input:"123"
-	},
-	methods:{
-		addTodo:function(){
-			this.todolists.push({text:this.newtodolist === "" ? this.errorMsg() : this.newtodolist});
-			this.$refs.textbox.focus()
-            this.newtodolist = ""	
-		},
-		removeTodo:function(index){
-			this.todolists.splice(index,1);
-		},
-		errorMsg() {
-			alert("請輸入內容")
-		}
-	}
-})
-</script>
+	</div>
+	<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				message: "Todolist",
+				todolists: [{
+						text: "內容 1"
+					},
+					{
+						text: "內容 2"
+					}, 
+					{
+						text: "內容 3"
+					},
+				],
+				newtodolist: "",
+				input: "",
+			},
+			methods: {
+				addTodo () {
+					this.todolists.push({text: this.newtodolist});
+					this.$refs.textbox.focus()
+					this.newtodolist = ""
+				},
+				removeTodo (index) {
+					this.todolists.splice(index, 1);
+				},
+			}
+		})
+	</script>
 </body>
+
 </html>
